@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Akshar', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: url("../img/89347.jpg");
+    background-color: #fafafa;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fafafa;
+    line-height: 1.5;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+#search-form {
+    font: inherit;
+    padding: 8px;
+    max-width: 620px;
+    margin-bottom: 16px;
+}
