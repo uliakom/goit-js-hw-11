@@ -26,7 +26,8 @@ async function onSearch (event) {
     try {
         const fetchedQuery = await PictureApiService.fetchArticles();
          Loading.dots();
-    Loading.remove(300);
+        Loading.remove(300);
+        totalPictureInfo(fetchedQuery);
         renderPicture(fetchedQuery);
         createPictureGalery();
         loadButtonRender();
@@ -96,3 +97,11 @@ function createPictureGalery() {
     lightbox.refresh();
 };
 
+function totalPictureInfo({data}) {
+    const totalHits = data.totalHits;
+    Report.success(
+'Hooray!',
+`We found ${totalHits} images.`,
+'Ok',
+);
+}
