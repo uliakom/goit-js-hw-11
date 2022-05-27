@@ -6,14 +6,14 @@ body {
     font-family: 'Akshar', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: url("../img/89347.jpg");
-    background-color: #fafafa;
+    background-image: url("../img/wallpaper.jpg");
+    background-color:black;
     background-size: cover;
     background-repeat: no-repeat;
-    color: #fafafa;
     line-height: 1.5;
-    margin-left: 50px;
-    margin-top: 50px;
+    margin-left: 0px;
+    margin-top: 0px;
+    
 }
 
 img {
@@ -23,7 +23,119 @@ img {
 
 #search-form {
     font: inherit;
-    padding: 8px;
-    max-width: 620px;
-    margin-bottom: 16px;
+    padding: 15px;
+    max-width: 720px;
+  
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 100px;
+    padding-left: 100px;
+margin-left: -30px;
+
+}
+
+.photo-card {
+    flex-basis: calc ((100% - 4 * 30px) / 4);
+    margin-left: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    
+}
+
+.photo-card:hover {
+-webkit-box-shadow: 1px 1px 13px -2px rgba(255, 255, 255, 0.94);
+    box-shadow: 1px 1px 13px -2px rgba(255, 255, 255, 0.94);
+}
+
+.gallery-photo {
+object-fit: cover;
+}
+
+.site-nav {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding: 10px;
+}
+
+.search-form {
+position: relative;
+}
+
+.form-input{
+    height: 50px;
+    width: 300px;
+    padding:10px;
+border-radius: 30px;
+outline: none;
+}
+
+.form-input::placeholder {
+    font-family: inherit;
+}
+
+.form-button {
+    position: absolute;
+    top:17px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    height: 50px;
+    width: 50px;
+    text-transform: uppercase;
+    background-color: #fefefe;
+    padding: 0px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    
+}
+.info-item {
+    display: flex;
+    flex-direction: column;
+    color:aliceblue;
+    font-size: 13px;
+    align-items: center;
+    
+}
+
+.info-item:not(:last-child){
+    margin-right: 25px;
+    
+}
+
+.loadmore-button {
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+        width: 100px;
+        padding: 10px;
+        border-radius: 30px;
+    -webkit-box-shadow: 1px 1px 13px -2px rgba(255, 255, 255, 0.94);
+        box-shadow: 1px 1px 13px -2px rgba(255, 255, 255, 0.94);
+        cursor: pointer;
+        text-transform: uppercase;
+        font-family: inherit;
+        font-weight: 500;
+        text-align: center;
+        background-color: #fff;
+        border: 2px solid black;
+}
+
+.is-hidden {
+visibility: hidden;
+opacity: 0;
+pointer-events: none;
 }
