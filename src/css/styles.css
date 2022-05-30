@@ -13,6 +13,7 @@ body {
     line-height: 1.5;
     margin-left: 0px;
     margin-top: 0px;
+    margin-bottom: 30px;
     
 }
 
@@ -27,14 +28,53 @@ img {
     max-width: 720px;
   
 }
-.gallery {
+/* .gallery {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     padding-right: 100px;
     padding-left: 100px;
 margin-left: -30px;
+} */
 
+
+@media screen and (min-width: 375px) {
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding-right: 20px;
+        padding-left: 20px;
+        margin-left: -30px;
+    }
 }
+
+@media screen and (min-width: 768px) {
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding-right: 20px;
+        padding-left: 20px;
+        margin-left: -30px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding-right: 100px;
+        padding-left: 100px;
+        margin-left: -30px;
+    }
+}
+
 
 .photo-card {
     flex-basis: calc ((100% - 4 * 30px) / 4);
@@ -138,4 +178,8 @@ outline: none;
 visibility: hidden;
 opacity: 0;
 pointer-events: none;
+}
+
+.red {
+    background-color: red;
 }

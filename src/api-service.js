@@ -10,7 +10,6 @@ export default class ApiService {
         const axios = require('axios');
         const picture = await axios.get(URL);
         this.incrementPage();
-        console.log(picture);
         return picture;
     }
     
