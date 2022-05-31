@@ -15,7 +15,7 @@ const refs = {
 const PictureApiService = new ApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.lodaMoreButton.addEventListener('click', onLoadMore);
+
 
 
 async function onSearch (event) {
@@ -29,14 +29,15 @@ async function onSearch (event) {
   clearPicture();
   PictureApiService.page = 1;
     try {
-        const fetchedQuery = await PictureApiService.fetchArticles();
+      const fetchedQuery = await PictureApiService.fetchArticles();
          Loading.dots();
         Loading.remove(300);
         totalPictureInfo(fetchedQuery);
         renderPicture(fetchedQuery);
         createPictureGalery();
-        loadButtonRender();
+        // loadButtonRender();
       smoothScroll();
+      addObserver();
       console.log(PictureApiService);
     }
     catch (error) {
@@ -76,23 +77,36 @@ function renderPicture({ data }) {
 </div>`;
         })
         .join('');
-    refs.pictureContainer.insertAdjacentHTML('beforeend', markup);
+  refs.pictureContainer.insertAdjacentHTML('beforeend', markup);
+  addObserveBox();
 }
     
-function loadButtonRender() {
-    refs.lodaMoreButton.classList.remove('is-hidden');
-};
 
-async function onLoadMore() {
-    const loadMoreQuery = await PictureApiService.fetchArticles();
-     Loading.dots();
-    Loading.remove(400);
-    renderPicture(loadMoreQuery);
-    loadButtonRender();
-    createPictureGalery();
-  smoothScroll();
-  console.log(PictureApiService);
-};
+
+//////// Load more button /////////
+
+// function loadButtonRender() {
+//     refs.lodaMoreButton.classList.remove('is-hidden');
+// };
+
+// refs.lodaMoreButton.addEventListener('click', onLoadMore);
+
+// async function onLoadMore() {
+//   try {
+//     const loadMoreQuery = await PictureApiService.fetchArticles();
+//     PictureApiService.incrementPage();
+//      Loading.dots();
+//     Loading.remove(400);
+//     renderPicture(loadMoreQuery);
+//     loadButtonRender();
+//     createPictureGalery();
+//     smoothScroll();
+//   console.log(PictureApiService);
+//   }
+//   catch (error) {
+// console.log(error);
+//   }
+// };
 
 function clearPicture() {
     refs.pictureContainer.innerHTML= ''; 
@@ -125,32 +139,47 @@ window.scrollBy({
 
 async function onScrollLoad () {
   try {
-      const scrollQuery = await PictureApiService.fetchArticles();
+    const scrollQuery = await PictureApiService.fetchArticles();
+    PictureApiService.incrementPage();
      Loading.dots();
     Loading.remove(400);
     renderPicture(scrollQuery);
     createPictureGalery();
+    addObserver();
+    removeObserveBox();
     console.log(PictureApiService);
   }
-  catch (eror) {
-    console.log(eror);
+  catch (error) {
+    console.log(error);
   }
+};
+
+function addObserveBox() {
+  const markup = `<div class="box box-observer"></div>`;
+  refs.pictureContainer.insertAdjacentHTML('beforeend', markup);
+};
+
+function removeObserveBox() {
+  document.querySelector('.box-observer').remove();
 };
 
 const scrollObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     
     if (entry.isIntersecting) {
-      // observer.unobserve(entry.target);
-      onScrollLoad();
-    }  
+      onScrollLoad();  
+    }
 
   })
 }
     , {
-      rootMargin: '100px 0px',
-      threshold: 0.5
+      rootMargin: '0px',
     }
   );
 
-document.querySelectorAll('img').forEach((image) => scrollObserver.observe(image));
+
+function addObserver() {
+  const observerBox = document.querySelectorAll('.box-observer').forEach((box) => scrollObserver.observe(box));
+}
+
+

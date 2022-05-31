@@ -9,7 +9,7 @@ export default class ApiService {
         const URL = `https://pixabay.com/api/?key=${MY_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=20&page=${this.page}`;
         const axios = require('axios');
         const picture = await axios.get(URL);
-        this.incrementPage();
+        // this.incrementPage();
         return picture;
     }
     
