@@ -12,10 +12,14 @@ const refs = {
   lodaMoreButton: document.querySelector('.loadmore-button'),
 };
 
+const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250
+ });
+
 const PictureApiService = new ApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
-
 
 
 async function onSearch (event) {
@@ -34,7 +38,7 @@ async function onSearch (event) {
         Loading.remove(300);
         totalPictureInfo(fetchedQuery);
         renderPicture(fetchedQuery);
-        createPictureGalery();
+      lightbox.refresh();
         // loadButtonRender();
       smoothScroll();
       addObserver();
@@ -112,13 +116,6 @@ function clearPicture() {
     refs.pictureContainer.innerHTML= ''; 
 };
 
-function createPictureGalery() {
- const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250
- });
-    lightbox.refresh();
-};
 
 function totalPictureInfo({data}) {
     const totalHits = data.totalHits;
@@ -144,7 +141,7 @@ async function onScrollLoad () {
      Loading.dots();
     Loading.remove(400);
     renderPicture(scrollQuery);
-    createPictureGalery();
+    lightbox.refresh();
     addObserver();
     removeObserveBox();
     console.log(PictureApiService);
